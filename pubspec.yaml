@@ -19,6 +19,9 @@ dependencies:
   flame:
   flame_forge2d:
   flame_svg:
+  shared_preferences:
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

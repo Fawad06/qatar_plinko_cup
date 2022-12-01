@@ -30,7 +30,7 @@ class ScoreBox extends StatelessWidget {
         Align(
           alignment: const Alignment(0, 0.075),
           child: Text(
-            score.toString(),
+            score.toStringAsFixed(1),
             textAlign: TextAlign.center,
             style: Theme.of(context)
                 .textTheme

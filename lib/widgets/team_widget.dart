@@ -19,26 +19,36 @@ class TeamWidget extends StatelessWidget {
     return Container(
       color: isSelected ? const Color(0xff1160B0) : Colors.transparent,
       width: isResult ? 130 : null,
-      child: Column(
-        children: [
-          isResult ? const SizedBox(height: 10) : const SizedBox(height: 20),
-          CircleAvatar(
-            radius: isResult ? 20 : 42,
-            backgroundImage: AssetImage(
-              country.imageUrl,
+      child: country.name.isEmpty
+          ? Text(
+              "No Team",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2
+                  ?.copyWith(color: Colors.grey),
+            )
+          : Column(
+              children: [
+                isResult
+                    ? const SizedBox(height: 10)
+                    : const SizedBox(height: 20),
+                CircleAvatar(
+                  radius: isResult ? 20 : 42,
+                  backgroundImage: AssetImage(
+                    country.imageUrl,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  country.name,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      ?.copyWith(color: Colors.grey),
+                ),
+                if (isResult) const SizedBox(height: 10),
+              ],
             ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            country.name,
-            style: Theme.of(context)
-                .textTheme
-                .bodyText2
-                ?.copyWith(color: Colors.grey),
-          ),
-          if (isResult) const SizedBox(height: 10),
-        ],
-      ),
     );
   }
 }

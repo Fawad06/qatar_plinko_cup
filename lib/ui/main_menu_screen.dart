@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qatar_plinko_cup/controllers/main_controller.dart';
@@ -9,6 +8,8 @@ import '../widgets/background_widget.dart';
 import '../widgets/coin_widget.dart';
 
 class MainMenuView extends StatelessWidget {
+  static const String id = "MainMenuView";
+
   const MainMenuView({Key? key}) : super(key: key);
 
   @override
@@ -47,25 +48,13 @@ class MainMenuView extends StatelessWidget {
                       onPressed: () {
                         Get.find<MainController>().selectedCountryName.value =
                             "";
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) => const TeamsView(),
-                          ),
-                        );
+                        Get.toNamed(TeamsView.id);
                       },
                       child: const Text("START GAME"),
                     ),
                     const Spacer(),
                     TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) => const StatsView(),
-                          ),
-                        );
-                      },
+                      onPressed: () => Get.toNamed(StatsView.id),
                       child: Text(
                         "MY STATS",
                         style: TextStyle(
@@ -93,15 +82,65 @@ class MainMenuView extends StatelessWidget {
         children: [
           const Expanded(child: SizedBox.shrink()),
           Expanded(
-            child: Text(
-              "02:59:59",
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium,
+            child: GetX<MainController>(
+              builder: (controller) =>
+                  controller.awardTimeDifference.value.inSeconds < 0
+                      ? Text(
+                          formatTime(
+                              -controller.awardTimeDifference.value.inSeconds),
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            controller.getAward();
+                          },
+                          child: Container(
+                            width: 120,
+                            height: 50,
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 8,
+                                  color: Colors.black,
+                                  spreadRadius: 1,
+                                ),
+                              ],
+                              gradient: const LinearGradient(
+                                colors: [Colors.teal, Colors.cyan],
+                              ),
+                              borderRadius: BorderRadius.circular(90),
+                            ),
+                            child: const Text(
+                              "Claim!",
+                              style: TextStyle(
+                                color: Colors.yellowAccent,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(1, 1),
+                                    color: Colors.black,
+                                    blurRadius: 10,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
             ),
           ),
-          Expanded(child: CoinWidget()),
+          const Expanded(child: CoinWidget()),
         ],
       ),
     );
+  }
+
+  String formatTime(int seconds) {
+    final int hrs = seconds ~/ 3600;
+    seconds = seconds % 3600;
+    final int min = seconds ~/ 60;
+    seconds = seconds % 60;
+    return "${hrs.toString().padLeft(2, '0')}:${min.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
   }
 }

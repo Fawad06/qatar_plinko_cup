@@ -1,14 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:qatar_plinko_cup/controllers/main_controller.dart';
 import 'package:qatar_plinko_cup/generated/assets.dart';
-import 'package:qatar_plinko_cup/ui/main_menu_screen.dart';
 import 'package:qatar_plinko_cup/widgets/background_widget.dart';
 import 'package:qatar_plinko_cup/widgets/team_widget.dart';
 
 class ResultView extends StatelessWidget {
+  static const String id = "ResultView";
   const ResultView({Key? key}) : super(key: key);
 
   @override
@@ -42,7 +41,7 @@ class ResultView extends StatelessWidget {
                       Expanded(
                         flex: 5,
                         child: ListView.separated(
-                          itemCount: 4,
+                          itemCount: controller.winList.length,
                           itemBuilder: (context, index) => Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             mainAxisSize: MainAxisSize.max,
@@ -53,14 +52,20 @@ class ResultView extends StatelessWidget {
                                     .textTheme
                                     .displayLarge
                                     ?.copyWith(
-                                      color: index == 0
+                                      color: controller.winList[index]
+                                                  ['country'] ==
+                                              controller.getCurrentCountry
                                           ? const Color(0xff3472A1)
                                           : Colors.grey,
                                     ),
                               ),
                               TeamWidget(
-                                isSelected: index == 0 ? true : false,
-                                country: controller.getCurrentCountry,
+                                isSelected: controller.winList[index]
+                                            ['country'] ==
+                                        controller.getCurrentCountry
+                                    ? true
+                                    : false,
+                                country: controller.winList[index]['country'],
                                 isResult: true,
                               ),
                             ],
@@ -80,7 +85,7 @@ class ResultView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "TOTAL WIN: 400 ",
+                              "TOTAL WIN: ${controller.winningAmount} ",
                               style: Theme.of(context)
                                   .textTheme
                                   .displayMedium
@@ -102,12 +107,9 @@ class ResultView extends StatelessWidget {
                 child: Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                        CupertinoPageRoute(
-                          builder: (c) => const MainMenuView(),
-                        ),
-                        (route) => false,
-                      );
+                      controller.winningAmount = 0;
+                      controller.winList.clear();
+                      Get.back();
                     },
                     child: const Text("TO MAIN MENU"),
                   ),

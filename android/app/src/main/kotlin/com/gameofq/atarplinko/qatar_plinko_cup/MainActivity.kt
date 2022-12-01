@@ -1,4 +1,4 @@
-package com.gameofq.atarplinko.qatar_plinko_cup
+package com.gameofq.atarplinko
 
 import io.flutter.embedding.android.FlutterActivity
 

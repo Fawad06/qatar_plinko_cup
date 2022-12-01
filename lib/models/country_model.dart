@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:qatar_plinko_cup/generated/assets.dart';
 
 class Country {
@@ -8,8 +7,7 @@ class Country {
   Country(this.name, this.imageUrl);
 }
 
-RxInt balanceCoins = 1000.obs;
-final countries = [
+final countriesList = [
   Country("Qatar", Assets.imagesQatar),
   Country("England", Assets.imagesEngland),
   Country("Argentina", Assets.imagesArgentina),

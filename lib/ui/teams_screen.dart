@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qatar_plinko_cup/ui/bet_screen.dart';
@@ -9,6 +8,7 @@ import '../utils/functions.dart';
 import '../widgets/team_widget.dart';
 
 class TeamsView extends StatelessWidget {
+  static const String id = "TeamsView";
   const TeamsView({Key? key}) : super(key: key);
 
   @override
@@ -80,11 +80,7 @@ class TeamsView extends StatelessWidget {
                         ? null
                         : () {
                             controller.betCoins.text = "0";
-                            Navigator.of(context).push(
-                              CupertinoPageRoute(
-                                builder: (context) => const BetView(),
-                              ),
-                            );
+                            Get.toNamed(BetView.id);
                           },
                     child: const Text("NEXT"),
                   );

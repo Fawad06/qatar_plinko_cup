@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gameofq.atarplinko.qatar_plinko_cup">
+    package="com.gameofq.atarplinko">
    <application
         android:label="Qatar Plinko Cup"
         android:name="${applicationName}"

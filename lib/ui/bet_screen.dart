@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -10,6 +9,7 @@ import 'package:qatar_plinko_cup/widgets/background_widget.dart';
 import '../widgets/coin_widget.dart';
 
 class BetView extends StatelessWidget {
+  static const String id = "BetView";
   const BetView({Key? key}) : super(key: key);
 
   @override
@@ -36,7 +36,7 @@ class BetView extends StatelessWidget {
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                         const SizedBox(width: 20),
-                        CoinWidget(),
+                        const CoinWidget(),
                       ],
                     ),
                     const Spacer(),
@@ -59,6 +59,8 @@ class BetView extends StatelessWidget {
                               key: Get.find<MainController>().betFormKey,
                               child: TextFormField(
                                 controller: Get.find<MainController>().betCoins,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
                                 onTap: () {
                                   if (Get.find<MainController>()
                                           .betCoins
@@ -67,8 +69,6 @@ class BetView extends StatelessWidget {
                                     Get.find<MainController>().betCoins.clear();
                                   }
                                 },
-                                keyboardType: TextInputType.number,
-                                textAlign: TextAlign.center,
                                 validator: (value) {
                                   if (value == null || value == "") {
                                     return "Enter an amount";
@@ -123,13 +123,7 @@ class BetView extends StatelessWidget {
                           .betFormKey
                           .currentState!
                           .validate()) {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (BuildContext context) =>
-                                const ConfirmView(),
-                          ),
-                        );
+                        Get.toNamed(ConfirmView.id);
                       }
                     },
                     child: const Text("Next"),

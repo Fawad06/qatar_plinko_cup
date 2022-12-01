@@ -10,6 +10,7 @@ import '../controllers/main_controller.dart';
 import '../widgets/score_box.dart';
 
 class StatsView extends StatelessWidget {
+  static const String id = "StatsView";
   const StatsView({Key? key}) : super(key: key);
 
   @override
@@ -36,7 +37,7 @@ class StatsView extends StatelessWidget {
               const Spacer(),
               TeamWidget(
                 isSelected: false,
-                country: Get.find<MainController>().favouriteTeam,
+                country: Get.find<MainController>().getFavouriteTeam(),
               ),
               const Spacer(flex: 2),
               Text(
@@ -50,7 +51,7 @@ class StatsView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "400",
+                    Get.find<MainController>().biggestWinningAmount.toString(),
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall
@@ -71,7 +72,7 @@ class StatsView extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               const SizedBox(height: 20),
-              const ScoreBox(score: 8.1),
+              ScoreBox(score: Get.find<MainController>().highestWinningOdd),
               const Spacer(flex: 2),
             ],
           ),

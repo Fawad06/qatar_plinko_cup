@@ -6,7 +6,7 @@ import 'package:qatar_plinko_cup/controllers/main_controller.dart';
 import '../generated/assets.dart';
 
 class CoinWidget extends StatelessWidget {
-  CoinWidget({
+  const CoinWidget({
     Key? key,
   }) : super(key: key);
 
