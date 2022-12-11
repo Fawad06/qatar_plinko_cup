@@ -1,16 +1,13 @@
 # qatar_plinko_cup
 
-A new Flutter project.
+Android & iOS mobile game. The user selects a team that competes against three random AI teams. Four balls are dropped from the top which reaches one of four boxes at the bottom by passing through obstacles, one that reaches the bottom first wins the game. Developed in Flutter and Flutter Flame game engine is used for game physics and logic.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+<img src="https://imgur.com/VwKiQXY" width="200">    <img src="https://imgur.com/Y3i0AlM" width="200">
 
-A few resources to get you started if this is your first Flutter project:
+<img src="https://imgur.com/6MrSQU5" width="200">    <img src="https://imgur.com/GpVlR2r" width="200">
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src="https://imgur.com/2tRsVfv" width="200">    <img src="https://imgur.com/Dlj9dlt" width="200">
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://imgur.com/8jfwzic" width="200">    <img src="https://imgur.com/qoFMoc4" width="200">
+
